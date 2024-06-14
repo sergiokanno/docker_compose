@@ -1,4 +1,7 @@
 # Criando meu primeiro docker compose
+volumes:
+  db-app:
+
 services:
 
   http:
@@ -29,7 +32,19 @@ services:
     ports:
       - "3001:3000"
 
-  #db
+  db:
+    container_name: db
+    image: postgres:16.2-alpine3.19
+    environment:
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - db-app:/var/lib/postgresql/data
+
+  db-adminer:
+    container_name: db_adminer
+    image: adminer:4.8.1
+    ports:
+      - 8081:8080
 
   #cashe
 
