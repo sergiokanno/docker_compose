@@ -68,5 +68,10 @@ services:
     networks:
       - rede-app
 
-  #messaging
-
+  messaging:
+    container_name: messaging
+    image: apache/kafka:3.7.0
+    networks:
+    - rede-app
+    ports:
+    - 9092:9092
